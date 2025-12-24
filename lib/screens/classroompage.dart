@@ -46,34 +46,43 @@ class _classroom_pageState extends State<classroom_page> {
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
-                          color: Appcolor.white,
-                          borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(largeradius))),
+                        color: Appcolor.white,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(largeradius),
+                        ),
+                      ),
                       child: Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: devicewidth! * 0.1),
+                          horizontal: devicewidth! * 0.1,
+                        ),
                         child: Center(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               const SizedBox(
-                                  height:
-                                      10), // Add some spacing between the heading and the list
+                                height: 10,
+                              ), // Add some spacing between the heading and the list
                               Expanded(
                                 child: CustomListViewBuilder(
                                   itemCount: subjects!.length,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    String displayNumber =
-                                        (index + 1).toString().padLeft(2, '0');
-                                    return GestureDetector(
-                                        onTap: () => gotoroute(
+                                        String displayNumber = (index + 1)
+                                            .toString()
+                                            .padLeft(2, '0');
+                                        return GestureDetector(
+                                          onTap: () => gotoroute(
                                             goto,
                                             subjects![index].subjectId,
-                                            subjects![index].name),
-                                        child: subjectlist(
-                                            displayNumber, subjects, index));
-                                  },
+                                            subjects![index].name,
+                                          ),
+                                          child: subjectlist(
+                                            displayNumber,
+                                            subjects,
+                                            index,
+                                          ),
+                                        );
+                                      },
                                 ),
                               ),
                             ],
@@ -82,7 +91,8 @@ class _classroom_pageState extends State<classroom_page> {
                       ),
                     ),
                   )
-                : const Center(child: Text('No data found')))
+                : const Center(child: Text('No data found')),
+          )
         : const Loader();
   }
 
@@ -90,8 +100,11 @@ class _classroom_pageState extends State<classroom_page> {
     if (goto == 'gototopic') {
       Navigator.pushNamed(context, '/topiclist', arguments: subId);
     } else if (goto == 'gotoassignment') {
-      Navigator.pushNamed(context, '/Assignmentlist',
-          arguments: Assignmentarguments(subId ?? '', subname ?? ''));
+      Navigator.pushNamed(
+        context,
+        '/Assignmentlist',
+        arguments: Assignmentarguments(subId ?? '', subname ?? ''),
+      );
     } else if (goto == 'gotoassessment') {
       Navigator.pushNamed(context, '/examlist', arguments: subId);
     }
@@ -102,8 +115,9 @@ class _classroom_pageState extends State<classroom_page> {
       padding: EdgeInsets.symmetric(vertical: 10),
       child: Container(
         decoration: BoxDecoration(
-            color: Appcolor.blue,
-            borderRadius: BorderRadius.circular(commonradius)),
+          color: Appcolor.blue,
+          borderRadius: BorderRadius.circular(commonradius),
+        ),
         // width: devicewidth! * 0.2,
         height: deviceheight! * 0.15,
         child: Row(
@@ -111,29 +125,30 @@ class _classroom_pageState extends State<classroom_page> {
             Expanded(
               flex: 1,
               child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: buildtext(
-                      text: displayNumber,
-                      fontcolor: Appcolor.white,
-                      fontsize: devicewidth! * 0.3,
-                      fontweight: FontWeight.bold)
+                fit: BoxFit.cover,
+                child: buildtext(
+                  text: displayNumber,
+                  fontcolor: Appcolor.white,
+                  fontsize: devicewidth! * 0.3,
+                  fontweight: FontWeight.bold,
+                ),
 
-                  // Text(
-                  //   displayNumber,
-                  //   style: TextStyle(
-                  //       color: Appcolor.white,
-                  //       fontSize: devicewidth! * 0.2,
-                  //       fontWeight: FontWeight.w800),
-                  // ),
-                  ),
+                // Text(
+                //   displayNumber,
+                //   style: TextStyle(
+                //       color: Appcolor.white,
+                //       fontSize: devicewidth! * 0.2,
+                //       fontWeight: FontWeight.w800),
+                // ),
+              ),
             ),
             Expanded(
               flex: 2,
               // color: Appcolor.black,
               child: Center(
-                  child:
-                      buildtext(text: subjects![index]!.name!, fontsize: 20)),
-            )
+                child: buildtext(text: subjects![index]!.name!, fontsize: 20),
+              ),
+            ),
           ],
         ),
       ),
@@ -141,8 +156,7 @@ class _classroom_pageState extends State<classroom_page> {
   }
 
   Future<void> _getsubjects() async {
-    final data = await getmultirowdata(
-        'subject', 'class_id', classid, 'topic', 'subject_id');
+    final data = await getmultirowdata(classid, sectionId);
     print('dddddddd');
 
     if (data != null) {

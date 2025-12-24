@@ -16,6 +16,7 @@ class URLS {
   static String viewexam = '$baseurl/exam_result';
   static String invoiceview = '$baseurl/getStudentInvoice';
   static String studentAttendanceView = '$baseurl/studentAttendanceView';
+  static String getsubject = '$baseurl/getSubjectList';
   
   
 ///////////////////////////////////////////

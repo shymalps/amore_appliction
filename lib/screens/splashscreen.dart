@@ -77,6 +77,7 @@ class _App_SplashscreenState extends State<App_Splashscreen> {
     classid = sharedpref.getString(clsid);
     studentid = sharedpref.getString(stid);
     sectionId = sharedpref.getString(secid);
+    courseid = sharedpref.getString(couid);
     Future.delayed(Duration(seconds: 5), () {
       if (kDebugMode) {
         print('rememberUser2: $rememberUser');

@@ -67,6 +67,8 @@ class Data {
   String? seenVideo;
   @JsonKey(name: 'seen_audio')
   dynamic seenAudio;
+  @JsonKey(name: 'course_id')
+  dynamic courseId;
   @JsonKey(name: 'class_id')
   String? classId;
   @JsonKey(name: 'section_id')
@@ -111,6 +113,7 @@ class Data {
     this.seenNotes,
     this.seenVideo,
     this.seenAudio,
+    this.courseId,
     this.classId,
     this.sectionId,
     this.utype,

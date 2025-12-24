@@ -44,7 +44,6 @@ LinearGradient backgroundgradient = const LinearGradient(
   colors: [Color.fromRGBO(255, 255, 255, 1), Color.fromRGBO(229, 245, 125, 1)],
   begin: Alignment.topCenter,
   end: Alignment.bottomCenter,
-
 );
 
 String baseurl = 'https://live.amorelearningschool.com/index.php?api';
@@ -56,7 +55,9 @@ const String KEYLOGIN = 'login';
 const String stid = 'stu_id';
 const String clsid = 'cls_id';
 const String secid = 'sec_id';
+const String couid = 'cou_id';
 bool? rememberUser;
 String? studentid;
 String? classid;
 String? sectionId;
+String? courseid;

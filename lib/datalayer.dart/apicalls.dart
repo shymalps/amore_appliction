@@ -105,7 +105,6 @@ Future<AttendanceResponse?> getstudentattendance(
         'section_id': sectionId,
         'course_id': courseId,
         'subject_id': SubjectId,
-        
       },
     );
 
@@ -226,7 +225,7 @@ Future<PeriodResponse?> getperioddata(String studentId) async {
   try {
     final response = await post(
       Uri.parse(URLS.getperioddata),
-      body: {'student_id':studentid },
+      body: {'student_id': studentid},
     );
     print("API CALL → ${URLS.getperioddata}");
     print("SENT student ID → $studentid");
@@ -249,21 +248,24 @@ Future<PeriodResponse?> getperioddata(String studentId) async {
 }
 
 Future<Subjectmodel?> getmultirowdata(
-  String tablename,
-  String parameter,
+  // String tablename,
+  // String parameter,
   String? clasid,
-  String retCount,
-  String tWhere,
+  String? sectionid,
+  // String retCount,
+  // String tWhere,
 ) async {
   try {
     final response = await post(
-      Uri.parse(URLS.gettablemultirow),
+      Uri.parse(URLS.getsubject),
       body: {
-        'tname': tablename,
-        'where': parameter,
-        'value': clasid,
-        'return_table_count': retCount,
-        't_where': tWhere,
+        // 'tname': tablename,
+        'student_id': studentid,
+        'course_id': courseid,
+        'class_id': clasid,
+        'section_id': sectionid,
+        // 'return_table_count': retCount,
+        // 't_where': tWhere,
       },
     );
 

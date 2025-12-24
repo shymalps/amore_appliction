@@ -44,6 +44,7 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       seenNotes: json['seen_notes'],
       seenVideo: json['seen_video'] as String?,
       seenAudio: json['seen_audio'],
+      courseId: json['course_id'],
       classId: json['class_id'] as String?,
       sectionId: json['section_id'] as String?,
       utype: json['utype'] as String?,

@@ -39,88 +39,89 @@ class _Login_pageState extends State<Login_page> {
             // SingleChildScrollView(
             // child:
             Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              // color: Appcolor.black,
-              height: devicewidth! * 0.3,
-              child: Image.asset(invertlogo),
-            ),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  // color: Appcolor.black,
+                  height: devicewidth! * 0.3,
+                  child: Image.asset(invertlogo),
+                ),
+                Container(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        buildtext(
+                          text: 'SIGN IN',
+                          fontweight: FontWeight.bold,
+                          fontsize: largefontsize,
+                        ),
+                        const SizedBox(height: 15),
+                        textfield(
+                          ctrl: _usernameController,
+                          label: 'Username',
+                          password: false,
+                        ),
+                        const SizedBox(height: 10),
+                        textfield(
+                          ctrl: _passwordController,
+                          label: 'Password',
+                          password: true,
+                        ),
+                        const SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            checkingforlogin();
+                          },
+                          child: signin_button(
+                            text: 'Sign in',
+                            isSelected:
+                                _usernameController.text != '' ||
+                                _passwordController.text != '',
+                            tapped: tapped,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  // color: Colors.white,
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    buildtext(
-                        text: 'SIGN IN',
-                        fontweight: FontWeight.bold,
-                        fontsize: largefontsize),
-                    const SizedBox(
-                      height: 15,
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 15),
+                      child: SizedBox(
+                        // color: Appcolor.black,
+                        height: devicewidth! * 0.075,
+                        child: GestureDetector(
+                          onTap: () =>
+                              Navigator.pushNamed(context, '/forgetpassword2'),
+                          child: buildtext(
+                            text: 'Forgot Password ?',
+                            fontcolor: Appcolor.black,
+                          ),
+                        ),
+                        // Image.asset(invertlogo),
+                      ),
                     ),
-                    textfield(
-                        ctrl: _usernameController,
-                        label: 'Username',
-                        password: false),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    textfield(
-                        ctrl: _passwordController,
-                        label: 'Password',
-                        password: true),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        checkingforlogin();
-                      },
-                      child: signin_button(
-                          text: 'Sign in',
-                          isSelected: _usernameController.text != '' ||
-                              _passwordController.text != '',
-                          tapped: tapped),
-                    )
                   ],
                 ),
-              ),
-              // color: Colors.white,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: SizedBox(
-                      // color: Appcolor.black,
-                      height: devicewidth! * 0.075,
-                      child: GestureDetector(
-                        onTap: () =>
-                            Navigator.pushNamed(context, '/forgetpassword2'),
-                        child: buildtext(
-                            text: 'Forgot Password ?',
-                            fontcolor: Appcolor.black),
-                      )
-                      // Image.asset(invertlogo),
-                      ),
-                ),
               ],
-            )
-          ],
-        ),
+            ),
         // ),
       ),
     );
   }
 
   // ignore: non_constant_identifier_names
-  Widget signin_button(
-      {required String text, required bool isSelected, required bool tapped}) {
+  Widget signin_button({
+    required String text,
+    required bool isSelected,
+    required bool tapped,
+  }) {
     return Container(
       height: devicewidth! * 0.125,
       width: devicewidth! * .4,
@@ -135,19 +136,23 @@ class _Login_pageState extends State<Login_page> {
               // lineWidth: 3.0,
             )
           : Center(
-              child: Text(text,
-                  style: TextStyle(
-                      color: isSelected ? Appcolor.white : Appcolor.black,
-                      fontWeight: FontWeight.w900,
-                      fontSize: largefontsize)),
+              child: Text(
+                text,
+                style: TextStyle(
+                  color: isSelected ? Appcolor.white : Appcolor.black,
+                  fontWeight: FontWeight.w900,
+                  fontSize: largefontsize,
+                ),
+              ),
             ),
     );
   }
 
-  Widget textfield(
-      {required TextEditingController ctrl,
-      required String label,
-      required bool password}) {
+  Widget textfield({
+    required TextEditingController ctrl,
+    required String label,
+    required bool password,
+  }) {
     return SizedBox(
       // decoration: BoxDecoration(
       //   // color: Colors.white,
@@ -170,9 +175,7 @@ class _Login_pageState extends State<Login_page> {
             fontsize: 15,
             // fontweight: FontWeight.bold,
           ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-          ),
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
           filled: true,
           fillColor: Appcolor.white,
         ),
@@ -186,17 +189,20 @@ class _Login_pageState extends State<Login_page> {
   }) {
     return Container(
       decoration: BoxDecoration(
-          border: Border.all(color: Appcolor.blue),
-          color: isSelected ? Appcolor.darkblue : Appcolor.white,
-          borderRadius: BorderRadius.circular(10)),
+        border: Border.all(color: Appcolor.blue),
+        color: isSelected ? Appcolor.darkblue : Appcolor.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
       width: devicewidth! * 0.3,
       height: deviceheight! * 0.075,
       child: Center(
-          child: buildtext(
-              text: text,
-              fontcolor: isSelected ? Appcolor.white : Appcolor.black,
-              fontsize: 15,
-              fontweight: FontWeight.bold)),
+        child: buildtext(
+          text: text,
+          fontcolor: isSelected ? Appcolor.white : Appcolor.black,
+          fontsize: 15,
+          fontweight: FontWeight.bold,
+        ),
+      ),
     );
   }
 
@@ -208,8 +214,10 @@ class _Login_pageState extends State<Login_page> {
         tapped = !tapped;
       });
       print('condition1');
-      final logindata =
-          await login(_usernameController.text, _passwordController.text);
+      final logindata = await login(
+        _usernameController.text,
+        _passwordController.text,
+      );
 
       // print(logindata!.message);
       // print(_usernameController.text);
@@ -218,15 +226,20 @@ class _Login_pageState extends State<Login_page> {
       // clearcontroller();
 
       if (logindata != null && logindata.message == 'Login Successfully') {
-        saveuserlogin(logindata.data!.studentId!, logindata.data!.classId!,
-            logindata.data!.sectionId!);
+        saveuserlogin(
+          logindata.data!.studentId!,
+          logindata.data!.classId!,
+          logindata.data!.sectionId!,
+          logindata.data!.courseId!,
+        );
         // ignore: use_build_context_synchronously
         Navigator.pushReplacementNamed(context, '/welcoepage');
       } else {
         showSubscriptionActiveSnackBar(
-            // ignore: use_build_context_synchronously
-            context,
-            'User not exist or not activated');
+          // ignore: use_build_context_synchronously
+          context,
+          'User not exist or not activated',
+        );
         setState(() {
           tapped = !tapped;
           _usernameController.clear();
@@ -235,18 +248,21 @@ class _Login_pageState extends State<Login_page> {
       }
     } else {
       showSubscriptionActiveSnackBar(
-          context, "Login Credentials Can't be empty");
+        context,
+        "Login Credentials Can't be empty",
+      );
     }
     // } else {
     //   showSubscriptionActiveSnackBar(context, 'Select a Logintype');
     // }
   }
 
-  saveuserlogin(String stuid, clid, seid) async {
+  saveuserlogin(String stuid, clid, seid, courseid) async {
     setState(() {
       studentid = stuid;
       classid = clid;
       sectionId = seid;
+      courseid = courseid;
     });
     // Perform login logic here
 
@@ -257,6 +273,7 @@ class _Login_pageState extends State<Login_page> {
     prefs.setString(stid, studentid!);
     prefs.setString(clsid, classid!);
     prefs.setString(secid, sectionId!);
+    prefs.setString(couid, courseid);
     // var sharedPref = await SharedPreferences.getInstance();
   }
 }
