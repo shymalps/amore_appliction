@@ -17,13 +17,17 @@ class Login_page extends StatefulWidget {
 class _Login_pageState extends State<Login_page> {
   int selectedindex = 0;
   bool tapped = false;
+  bool _obscurePassword = true; // Password visibility state
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  
+  // Form validation states
+  String? _emailError;
+  String? _passwordError;
+
   @override
   void dispose() {
-    // Dispose the controllers when the widget is disposed
     _usernameController.dispose();
-
     _passwordController.dispose();
     super.dispose();
   }
@@ -35,93 +39,78 @@ class _Login_pageState extends State<Login_page> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(gradient: backgroundgradient),
-        child:
-            // SingleChildScrollView(
-            // child:
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  // color: Appcolor.black,
-                  height: devicewidth! * 0.3,
-                  child: Image.asset(invertlogo),
-                ),
-                Container(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        buildtext(
-                          text: 'SIGN IN',
-                          fontweight: FontWeight.bold,
-                          fontsize: largefontsize,
-                        ),
-                        const SizedBox(height: 15),
-                        textfield(
-                          ctrl: _usernameController,
-                          label: 'Username',
-                          password: false,
-                        ),
-                        const SizedBox(height: 10),
-                        textfield(
-                          ctrl: _passwordController,
-                          label: 'Password',
-                          password: true,
-                        ),
-                        const SizedBox(height: 10),
-                        GestureDetector(
-                          onTap: () {
-                            checkingforlogin();
-                          },
-                          child: signin_button(
-                            text: 'Sign in',
-                            isSelected:
-                                _usernameController.text != '' ||
-                                _passwordController.text != '',
-                            tapped: tapped,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  // color: Colors.white,
-                ),
-                const SizedBox(height: 20),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              height: devicewidth! * 0.3,
+              child: Image.asset(invertlogo),
+            ),
+            Container(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 15),
-                      child: SizedBox(
-                        // color: Appcolor.black,
-                        height: devicewidth! * 0.075,
-                        child: GestureDetector(
-                          onTap: () =>
-                              Navigator.pushNamed(context, '/forgetpassword2'),
-                          child: buildtext(
-                            text: 'Forgot Password ?',
-                            fontcolor: Appcolor.black,
-                          ),
-                        ),
-                        // Image.asset(invertlogo),
-                      ),
+                    buildtext(
+                        text: 'SIGN IN',
+                        fontweight: FontWeight.bold,
+                        fontsize: largefontsize),
+                    const SizedBox(height: 15),
+                    textfield(
+                      ctrl: _usernameController,
+                      label: 'Email',
+                      password: false,
+                      errorText: _emailError,
                     ),
+                    const SizedBox(height: 10),
+                    textfield(
+                      ctrl: _passwordController,
+                      label: 'Password',
+                      password: true,
+                      errorText: _passwordError,
+                    ),
+                    const SizedBox(height: 10),
+                    GestureDetector(
+                      onTap: () {
+                        checkingforlogin();
+                      },
+                      child: signin_button(
+                          text: 'Sign in',
+                          isSelected: _usernameController.text.isNotEmpty &&
+                              _passwordController.text.isNotEmpty,
+                          tapped: tapped),
+                    )
                   ],
                 ),
-              ],
+              ),
             ),
-        // ),
+            const SizedBox(height: 20),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.end,
+            //   children: [
+            //     Padding(
+            //       padding: const EdgeInsets.only(bottom: 15),
+            //       child: SizedBox(
+            //           height: devicewidth! * 0.075,
+            //           child: GestureDetector(
+            //             onTap: () =>
+            //                 Navigator.pushNamed(context, '/forgetpassword2'),
+            //             child: buildtext(
+            //                 text: 'Forgot Password ?',
+            //                 fontcolor: Appcolor.black),
+            //           )),
+            //     ),
+            //   ],
+            // )
+          ],
+        ),
       ),
     );
   }
 
-  // ignore: non_constant_identifier_names
-  Widget signin_button({
-    required String text,
-    required bool isSelected,
-    required bool tapped,
-  }) {
+  Widget signin_button(
+      {required String text, required bool isSelected, required bool tapped}) {
     return Container(
       height: devicewidth! * 0.125,
       width: devicewidth! * .4,
@@ -133,17 +122,13 @@ class _Login_pageState extends State<Login_page> {
           ? const SpinKitFadingCircle(
               color: Appcolor.black,
               size: 30.0,
-              // lineWidth: 3.0,
             )
           : Center(
-              child: Text(
-                text,
-                style: TextStyle(
-                  color: isSelected ? Appcolor.white : Appcolor.black,
-                  fontWeight: FontWeight.w900,
-                  fontSize: largefontsize,
-                ),
-              ),
+              child: Text(text,
+                  style: TextStyle(
+                      color: isSelected ? Appcolor.white : Appcolor.black,
+                      fontWeight: FontWeight.w900,
+                      fontSize: largefontsize)),
             ),
     );
   }
@@ -152,34 +137,77 @@ class _Login_pageState extends State<Login_page> {
     required TextEditingController ctrl,
     required String label,
     required bool password,
+    String? errorText,
   }) {
-    return SizedBox(
-      // decoration: BoxDecoration(
-      //   // color: Colors.white,
-      //   borderRadius: BorderRadius.circular(8),
-      // ),
-      height: devicewidth! * 0.15,
-      child: TextField(
-        controller: ctrl,
-        obscureText: password,
-        onChanged: (value) {
-          setState(() {
-            ctrl.text = value;
-          });
-        },
-        decoration: InputDecoration(
-          // focusColor: Appcolor.black,
-          label: buildtext(
-            text: label,
-            fontcolor: Appcolor.black,
-            fontsize: 15,
-            // fontweight: FontWeight.bold,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          height: devicewidth! * 0.15,
+          child: TextField(
+            controller: ctrl,
+            obscureText: password ? _obscurePassword : false,
+            onChanged: (value) {
+              setState(() {
+                // Clear errors when user starts typing
+                if (password) {
+                  _passwordError = null;
+                } else {
+                  _emailError = null;
+                }
+              });
+            },
+            decoration: InputDecoration(
+              label: buildtext(
+                text: label,
+                fontcolor: Appcolor.black,
+                fontsize: 15,
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(color: Colors.red, width: 1.5),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(color: Colors.red, width: 2.0),
+              ),
+              filled: true,
+              fillColor: Appcolor.white,
+              // Add visibility toggle icon for password field
+              suffixIcon: password
+                  ? IconButton(
+                      icon: Icon(
+                        _obscurePassword
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                        color: Appcolor.black,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _obscurePassword = !_obscurePassword;
+                        });
+                      },
+                    )
+                  : null,
+            ),
           ),
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8.0)),
-          filled: true,
-          fillColor: Appcolor.white,
         ),
-      ),
+        // Display error message below the field
+        if (errorText != null)
+          Padding(
+            padding: const EdgeInsets.only(left: 12, top: 4),
+            child: Text(
+              errorText,
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 12,
+              ),
+            ),
+          ),
+      ],
     );
   }
 
@@ -189,91 +217,112 @@ class _Login_pageState extends State<Login_page> {
   }) {
     return Container(
       decoration: BoxDecoration(
-        border: Border.all(color: Appcolor.blue),
-        color: isSelected ? Appcolor.darkblue : Appcolor.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
+          border: Border.all(color: Appcolor.blue),
+          color: isSelected ? Appcolor.darkblue : Appcolor.white,
+          borderRadius: BorderRadius.circular(10)),
       width: devicewidth! * 0.3,
       height: deviceheight! * 0.075,
       child: Center(
-        child: buildtext(
-          text: text,
-          fontcolor: isSelected ? Appcolor.white : Appcolor.black,
-          fontsize: 15,
-          fontweight: FontWeight.bold,
-        ),
-      ),
+          child: buildtext(
+              text: text,
+              fontcolor: isSelected ? Appcolor.white : Appcolor.black,
+              fontsize: 15,
+              fontweight: FontWeight.bold)),
     );
   }
 
   Future<void> checkingforlogin() async {
-    // if (selectedindex == 1 || selectedindex == 2) {
-    print('condition1');
-    if (_usernameController.text != '' && _passwordController.text != '') {
+    final email = _usernameController.text.trim();
+    final password = _passwordController.text.trim();
+
+    // Reset errors
+    setState(() {
+      _emailError = null;
+      _passwordError = null;
+    });
+
+    bool hasError = false;
+
+    // EMAIL VALIDATION
+    if (email.isEmpty) {
       setState(() {
-        tapped = !tapped;
+        _emailError = "Please enter your email";
       });
-      print('condition1');
-      final logindata = await login(
-        _usernameController.text,
-        _passwordController.text,
+      hasError = true;
+    } else if (!isValidEmail(email)) {
+      setState(() {
+        _emailError = "Please enter a valid email address";
+      });
+      hasError = true;
+    }
+
+    // PASSWORD VALIDATION
+    if (password.isEmpty) {
+      setState(() {
+        _passwordError = "Please enter your password";
+      });
+      hasError = true;
+    } else if (!isValidPassword(password)) {
+      setState(() {
+        _passwordError = "Password must be at least 6 characters";
+      });
+      hasError = true;
+    }
+
+    // If there are validation errors, return without snackbar
+    if (hasError) {
+      return;
+    }
+
+    // 🔄 Show loader
+    setState(() {
+      tapped = true;
+    });
+
+    final logindata = await login(email, password);
+
+    if (logindata != null && logindata.message == 'Login Successfully') {
+      saveuserlogin(
+        logindata.data!.studentId!,
+        logindata.data!.classId!,
+        logindata.data!.sectionId!,
       );
 
-      // print(logindata!.message);
-      // print(_usernameController.text);
-      // print(_usernameController.text);
-
-      // clearcontroller();
-
-      if (logindata != null && logindata.message == 'Login Successfully') {
-        saveuserlogin(
-          logindata.data!.studentId!,
-          logindata.data!.classId!,
-          logindata.data!.sectionId!,
-          logindata.data!.courseId!,
-        );
-        // ignore: use_build_context_synchronously
-        Navigator.pushReplacementNamed(context, '/welcoepage');
-      } else {
-        showSubscriptionActiveSnackBar(
-          // ignore: use_build_context_synchronously
-          context,
-          'User not exist or not activated',
-        );
-        setState(() {
-          tapped = !tapped;
-          _usernameController.clear();
-          _passwordController.clear();
-        });
-      }
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/welcoepage');
     } else {
       showSubscriptionActiveSnackBar(
-        context,
-        "Login Credentials Can't be empty",
-      );
+          context, 'User not exist or not activated');
+
+      setState(() {
+        tapped = false;
+        _usernameController.clear();
+        _passwordController.clear();
+      });
     }
-    // } else {
-    //   showSubscriptionActiveSnackBar(context, 'Select a Logintype');
-    // }
   }
 
-  saveuserlogin(String stuid, clid, seid, courseid) async {
+  saveuserlogin(String stuid, clid, seid) async {
     setState(() {
       studentid = stuid;
       classid = clid;
       sectionId = seid;
-      courseid = courseid;
     });
-    // Perform login logic here
 
-    // For example, simulate a login by setting isLoggedIn to true
     var prefs = await SharedPreferences.getInstance();
     await prefs.setBool(KEYLOGIN, true);
     print('saved id is: $studentid, $classid, $sectionId');
     prefs.setString(stid, studentid!);
     prefs.setString(clsid, classid!);
     prefs.setString(secid, sectionId!);
-    prefs.setString(couid, courseid);
-    // var sharedPref = await SharedPreferences.getInstance();
+  }
+
+  bool isValidEmail(String email) {
+    final emailRegex = RegExp(r'^[^@]+@[^@]+\.[^@]+');
+    return emailRegex.hasMatch(email);
+  }
+
+  bool isValidPassword(String password) {
+    return password.length >= 6;
   }
 }

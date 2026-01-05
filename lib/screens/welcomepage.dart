@@ -83,61 +83,61 @@ class _WelcomepageState extends State<Welcomepage> {
                           color: Appcolor.white,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Container(
-                          height: 50,
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    offset: const Offset(12, 26),
-                                    blurRadius: 50,
-                                    spreadRadius: 0,
-                                    color: Colors.grey.withOpacity(.1)),
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(15)),
-                          child: TextField(
-                            // controller: searchController,
-                            textAlign: TextAlign.left,
-                            onChanged: (value) {},
-                            onTap: () {
-                              // Navigator.push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => searchpages(),
-                              //   ),
-                              // );
-                            },
-                            style: const TextStyle(fontSize: 14),
-                            decoration: InputDecoration(
-                              // prefixIcon: Icon(Icons.email),
-                              prefixIcon: const Icon(Icons.search,
-                                  size: 20, color: Color(0xffFF5A60)),
-                              filled: true,
-                              fillColor: Colors.white,
-                              hintText: 'Search Courses',
-                              hintStyle: TextStyle(
-                                  color: Colors.black.withOpacity(.75)),
-                              contentPadding: const EdgeInsets.symmetric(
-                                  vertical: 0.0, horizontal: 20.0),
-                              border: const OutlineInputBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                              enabledBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.white, width: 1.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                              focusedBorder: const OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.white, width: 2.0),
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15.0)),
-                              ),
-                            ),
-                          ),
-                        ),
+                        // child: Container(
+                        //   height: 50,
+                        //   decoration: BoxDecoration(
+                        //       boxShadow: [
+                        //         BoxShadow(
+                        //             offset: const Offset(12, 26),
+                        //             blurRadius: 50,
+                        //             spreadRadius: 0,
+                        //             color: Colors.grey.withOpacity(.1)),
+                        //       ],
+                        //       color: Colors.white,
+                        //       borderRadius: BorderRadius.circular(15)),
+                        //   child: TextField(
+                        //     // controller: searchController,
+                        //     textAlign: TextAlign.left,
+                        //     onChanged: (value) {},
+                        //     onTap: () {
+                        //       // Navigator.push(
+                        //       //   context,
+                        //       //   MaterialPageRoute(
+                        //       //     builder: (context) => searchpages(),
+                        //       //   ),
+                        //       // );
+                        //     },
+                        //     style: const TextStyle(fontSize: 14),
+                        //     decoration: InputDecoration(
+                        //       // prefixIcon: Icon(Icons.email),
+                        //       // prefixIcon: const Icon(Icons.search,
+                        //       //     size: 20, color: Color(0xffFF5A60)),
+                        //       filled: true,
+                        //       fillColor: Colors.white,
+                        //       hintText: 'Search Courses',
+                        //       hintStyle: TextStyle(
+                        //           color: Colors.black.withOpacity(.75)),
+                        //       contentPadding: const EdgeInsets.symmetric(
+                        //           vertical: 0.0, horizontal: 20.0),
+                        //       border: const OutlineInputBorder(
+                        //         borderRadius:
+                        //             BorderRadius.all(Radius.circular(15.0)),
+                        //       ),
+                        //       enabledBorder: const OutlineInputBorder(
+                        //         borderSide:
+                        //             BorderSide(color: Colors.white, width: 1.0),
+                        //         borderRadius:
+                        //             BorderRadius.all(Radius.circular(15.0)),
+                        //       ),
+                        //       focusedBorder: const OutlineInputBorder(
+                        //         borderSide:
+                        //             BorderSide(color: Colors.white, width: 2.0),
+                        //         borderRadius:
+                        //             BorderRadius.all(Radius.circular(15.0)),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
 
                         //const Padding(
                         //     padding: EdgeInsets.all(10),
@@ -434,7 +434,7 @@ class Dashboardappbar extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    padding: const EdgeInsets.only(top: 20,left: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,

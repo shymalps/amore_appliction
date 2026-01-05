@@ -81,6 +81,7 @@ class _profile_pageState extends State<profile_page> {
                                       borderRadius:
                                           BorderRadius.circular(commonradius)),
                                   child: Column(
+                                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Expanded(
                                         flex: 1,
@@ -88,10 +89,10 @@ class _profile_pageState extends State<profile_page> {
                                           width: devicewidth,
                                           // color: Appcolor.black,
                                           child: Align(
-                                            alignment: Alignment.bottomCenter,
+                                            alignment: Alignment.bottomLeft,
                                             child: Padding(
                                                 padding: const EdgeInsets.only(
-                                                    bottom: 10),
+                                                    left: 30),
                                                 child: buildtext(
                                                     text: userdata!.data!.name!,
                                                     fontsize: largefontsize,
