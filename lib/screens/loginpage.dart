@@ -43,7 +43,7 @@ class _Login_pageState extends State<Login_page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: devicewidth! * 0.3,
+              height: devicewidth! * 0.6,
               child: Image.asset(invertlogo),
             ),
             Container(
@@ -52,10 +52,10 @@ class _Login_pageState extends State<Login_page> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    buildtext(
-                        text: 'SIGN IN',
-                        fontweight: FontWeight.bold,
-                        fontsize: largefontsize),
+                    // buildtext(
+                    //     text: 'SIGN IN',
+                    //     fontweight: FontWeight.bold,
+                    //     fontsize: largefontsize),
                     const SizedBox(height: 15),
                     textfield(
                       ctrl: _usernameController,
