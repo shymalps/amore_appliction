@@ -13,8 +13,9 @@ Examquestionmodel _$ExamquestionmodelFromJson(Map<String, dynamic> json) =>
       data: (json['data'] as List<dynamic>?)
           ?.map((e) => Questions.fromJson(e as Map<String, dynamic>))
           .toList(),
-      quesId:
-          (json['ques_id'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      quesId: (json['ques_id'] as List<dynamic>?)
+          ?.map((e) => e as String)
+          .toList(),
       exam: json['exam'] == null
           ? null
           : Exam.fromJson(json['exam'] as Map<String, dynamic>),

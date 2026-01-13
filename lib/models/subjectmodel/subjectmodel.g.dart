@@ -7,13 +7,13 @@ part of 'subjectmodel.dart';
 // **************************************************************************
 
 Subjectmodel _$SubjectmodelFromJson(Map<String, dynamic> json) => Subjectmodel(
-      status: json['status'] as String?,
-      message: json['message'] as String?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      count: (json['count'] as num?)?.toInt(),
-    );
+  status: json['status'] as String?,
+  message: json['message'] as String?,
+  data: (json['data'] as List<dynamic>?)
+      ?.map((e) => Datum.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  count: (json['count'] as num?)?.toInt(),
+);
 
 Map<String, dynamic> _$SubjectmodelToJson(Subjectmodel instance) =>
     <String, dynamic>{

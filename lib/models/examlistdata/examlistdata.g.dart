@@ -7,12 +7,12 @@ part of 'examlistdata.dart';
 // **************************************************************************
 
 Examlistdata _$ExamlistdataFromJson(Map<String, dynamic> json) => Examlistdata(
-      status: json['status'] as String?,
-      message: json['message'] as String?,
-      data: (json['data'] as List<dynamic>?)
-          ?.map((e) => Exam.fromJson(e as Map<String, dynamic>))
-          .toList(),
-    );
+  status: json['status'] as String?,
+  message: json['message'] as String?,
+  data: (json['data'] as List<dynamic>?)
+      ?.map((e) => Exam.fromJson(e as Map<String, dynamic>))
+      .toList(),
+);
 
 Map<String, dynamic> _$ExamlistdataToJson(Examlistdata instance) =>
     <String, dynamic>{

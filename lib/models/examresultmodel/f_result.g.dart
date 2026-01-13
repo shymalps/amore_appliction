@@ -7,13 +7,13 @@ part of 'f_result.dart';
 // **************************************************************************
 
 FResult _$FResultFromJson(Map<String, dynamic> json) => FResult(
-      totalAns: json['total_ans'] as dynamic?,
-      totalWorng: json['total_worng'] as dynamic?,
-      totalMark: json['total_mark'] as dynamic?,
-    );
+  totalAns: json['total_ans'],
+  totalWorng: json['total_worng'],
+  totalMark: json['total_mark'],
+);
 
 Map<String, dynamic> _$FResultToJson(FResult instance) => <String, dynamic>{
-      'total_ans': instance.totalAns,
-      'total_worng': instance.totalWorng,
-      'total_mark': instance.totalMark,
-    };
+  'total_ans': instance.totalAns,
+  'total_worng': instance.totalWorng,
+  'total_mark': instance.totalMark,
+};

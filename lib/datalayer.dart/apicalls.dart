@@ -188,39 +188,6 @@ Future<Loginmodel?> getsinglerowdata(
   }
 }
 
-// Future<PeriodResponse?> getperioddata(String classid, String sectionid) async {
-//   try {
-//     final response = await post(
-//       Uri.parse(URLS.getperioddata),
-//       body: {
-//         'class_id': classid,
-//         'section_id': sectionid,
-//       },
-//     );
-
-//     print("API STATUS CODE → ${response.statusCode}");
-//     print("API RAW RESPONSE → ${response.body}");
-
-//     if (response.statusCode == 200) {
-//       final jsonBody = jsonDecode(response.body);
-//       print("DECODED JSON → $jsonBody");
-
-//       if (jsonBody['status'] != 'error') {
-//         return PeriodResponse.fromJson(jsonBody);
-//       } else {
-//         print("API Returned Error: ${jsonBody['message']}");
-//         return null;
-//       }
-//     } else {
-//       print("API HTTP Error: ${response.statusCode}");
-//       return null;
-//     }
-//   } catch (e) {
-//     print("EXCEPTION → $e");
-//     return null;
-//   }
-// }
-
 Future<PeriodResponse?> getperioddata(String studentId) async {
   try {
     final response = await post(

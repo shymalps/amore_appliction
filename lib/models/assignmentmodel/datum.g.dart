@@ -7,21 +7,21 @@ part of 'datum.dart';
 // **************************************************************************
 
 Assignment _$AssignmentFromJson(Map<String, dynamic> json) => Assignment(
-      assignmentId: json['assignment_id'] as String?,
-      subjectId: json['subject_id'] as String?,
-      classId: json['class_id'] as String?,
-      topicId: json['topic_id'] as String?,
-      teacherId: json['teacher_id'] as String?,
-      title: json['title'] as String?,
-      qus: json['qus'] as String?,
-      mark: json['mark'] as String?,
-      fileName: json['file_name'] as String?,
-      filesize: json['filesize'] as String?,
-      createdAt: json['created_at'] as String?,
-      submitMark: json['submit_mark'] as String?,
-      submitStatus: json['submit_status'] as String?,
-      teacherName: json['teacher_name'] as String?,
-    );
+  assignmentId: json['assignment_id'] as String?,
+  subjectId: json['subject_id'] as String?,
+  classId: json['class_id'] as String?,
+  topicId: json['topic_id'] as String?,
+  teacherId: json['teacher_id'] as String?,
+  title: json['title'] as String?,
+  qus: json['qus'] as String?,
+  mark: json['mark'] as String?,
+  fileName: json['file_name'] as String?,
+  filesize: json['filesize'] as String?,
+  createdAt: json['created_at'] as String?,
+  submitMark: json['submit_mark'] as String?,
+  submitStatus: json['submit_status'] as String?,
+  teacherName: json['teacher_name'] as String?,
+);
 
 Map<String, dynamic> _$AssignmentToJson(Assignment instance) =>
     <String, dynamic>{

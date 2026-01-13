@@ -12,6 +12,7 @@ import 'package:amore_student_erp/others/constants.dart';
 import 'package:amore_student_erp/screens/appdrawer.dart';
 import 'package:amore_student_erp/screens/assignmentlistpage.dart';
 import 'package:amore_student_erp/screens/settingspage.dart';
+import 'package:intl/intl.dart';
 
 class Welcomepage extends StatefulWidget {
   const Welcomepage({super.key});
@@ -34,13 +35,47 @@ class _WelcomepageState extends State<Welcomepage> {
     return loading
         ? const Loader()
         : Scaffold(
-            endDrawer:  Drawer(child: app_drawer()),
-            // drawer: app_drawer()
             appBar: AppBar(
-              flexibleSpace: Dashboardappbar(
-                name: baritems[0].name ?? '',
-              ),
-            ),
+  backgroundColor: Appcolor.darkblue,
+  elevation: 0,
+  toolbarHeight: 90,
+  titleSpacing: 15,
+  title: Row(
+    children: [
+      SizedBox(
+        height: 50,
+        width: 50,
+        child: profileimage(
+          image: menavathar,
+          border: true,
+          circle: false,
+        ),
+      ),
+      const SizedBox(width: 12),
+      Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildtext(
+            text: 'Welcome back,',
+            fontsize: 12,
+            fontcolor: Appcolor.white,
+            fontweight: FontWeight.w400,
+          ),
+          buildtext(
+            text: capitalization(baritems[0].name!.trim()),
+            fontsize: 16,
+            fontcolor: Appcolor.white,
+            fontweight: FontWeight.w700,
+          ),
+        ],
+      ),
+    ],
+  ),
+),
+endDrawer: Drawer(child: app_drawer()),
+
+
             backgroundColor: Appcolor.darkblue,
             body: SafeArea(
               child: Container(
@@ -55,15 +90,17 @@ class _WelcomepageState extends State<Welcomepage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          buildtext(
-                              text:
-                                  capitalization(baritems[0].datumClass ?? ''),
+                                    buildtext(
+                              text: '${baritems[0].department ?? '' }(',
                               fontsize: comonfontsize,
                               fontcolor: Appcolor.white),
-                          // buildtext(
-                          //     text: 'Active',
-                          //     fontsize: comonfontsize,
-                          //     fontcolor: Appcolor.white)
+                          buildtext(
+                              text:
+                                  '${baritems[0].datumClass ?? ''})',
+                              fontsize: comonfontsize,
+                              fontcolor: Appcolor.white),
+                
+                                 
                         ],
                       ),
                     ),
@@ -74,7 +111,18 @@ class _WelcomepageState extends State<Welcomepage> {
                         thickness: 2, // Set the thickness of the divider
                         height: 20, // Set the height spacing around the divider
                       ),
+                    ),    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 15),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: buildtext(
+                                  text: baritems[0].section ?? '',
+                                  fontsize: comonfontsize,
+                                  fontcolor: Appcolor.white),
+                      ),
                     ),
+                              
+
                     Padding(
                       padding: const EdgeInsets.all(15),
                       child: Container(
@@ -83,77 +131,7 @@ class _WelcomepageState extends State<Welcomepage> {
                           color: Appcolor.white,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        // child: Container(
-                        //   height: 50,
-                        //   decoration: BoxDecoration(
-                        //       boxShadow: [
-                        //         BoxShadow(
-                        //             offset: const Offset(12, 26),
-                        //             blurRadius: 50,
-                        //             spreadRadius: 0,
-                        //             color: Colors.grey.withOpacity(.1)),
-                        //       ],
-                        //       color: Colors.white,
-                        //       borderRadius: BorderRadius.circular(15)),
-                        //   child: TextField(
-                        //     // controller: searchController,
-                        //     textAlign: TextAlign.left,
-                        //     onChanged: (value) {},
-                        //     onTap: () {
-                        //       // Navigator.push(
-                        //       //   context,
-                        //       //   MaterialPageRoute(
-                        //       //     builder: (context) => searchpages(),
-                        //       //   ),
-                        //       // );
-                        //     },
-                        //     style: const TextStyle(fontSize: 14),
-                        //     decoration: InputDecoration(
-                        //       // prefixIcon: Icon(Icons.email),
-                        //       // prefixIcon: const Icon(Icons.search,
-                        //       //     size: 20, color: Color(0xffFF5A60)),
-                        //       filled: true,
-                        //       fillColor: Colors.white,
-                        //       hintText: 'Search Courses',
-                        //       hintStyle: TextStyle(
-                        //           color: Colors.black.withOpacity(.75)),
-                        //       contentPadding: const EdgeInsets.symmetric(
-                        //           vertical: 0.0, horizontal: 20.0),
-                        //       border: const OutlineInputBorder(
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(15.0)),
-                        //       ),
-                        //       enabledBorder: const OutlineInputBorder(
-                        //         borderSide:
-                        //             BorderSide(color: Colors.white, width: 1.0),
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(15.0)),
-                        //       ),
-                        //       focusedBorder: const OutlineInputBorder(
-                        //         borderSide:
-                        //             BorderSide(color: Colors.white, width: 2.0),
-                        //         borderRadius:
-                        //             BorderRadius.all(Radius.circular(15.0)),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
-
-                        //const Padding(
-                        //     padding: EdgeInsets.all(10),
-                        //     child:  Row(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        //         children:  [
-
-                        //           // buildtext(
-                        //           //     text: 'Search Here',
-                        //           //     fontcolor: Appcolor.grey),
-                        //           Icon(
-                        //             Icons.search,
-                        //             color: Appcolor.grey,
-                        //           )
-                        //         ])),
-                      ),
+                ),
                     ),
                     Expanded(
                       child: Container(
@@ -184,7 +162,7 @@ class _WelcomepageState extends State<Welcomepage> {
                                         ),
                                         dashboarditem(
                                           icon: ecamicon,
-                                          label: 'Exam',
+                                          label: 'Exam        ',
                                           routeName: '/classroom',
                                           argument: 'gotoassessment',
                                         )
@@ -205,75 +183,88 @@ class _WelcomepageState extends State<Welcomepage> {
                                           argument: 'gotoassignment',
                                         ),
                                         dashboarditem(
-                                          icon: profileicon,
-                                          label: 'Profile',
-                                          routeName: '/profilepage',
+                                          icon: liveC,
+                                          label: 'Live Class',
+                                          routeName: '/liveclassroom',
                                           argument: '',
                                         )
                                       ]),
                                 ),
-                                const SizedBox(height: 20),
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: Appcolor.white,
-                                      borderRadius: BorderRadius.circular(15)),
-                                  child: Padding(
-                                      padding:
-                                          EdgeInsets.all(devicewidth! * 0.02),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          buildtext(
-                                              text: capitalization(
-                                                  baritems[0].datumClass ?? ''),
-                                              fontcolor: Appcolor.black,
-                                              fontweight: FontWeight.w600,
-                                              fontsize: largefontsize),
-                                          const Divider(
-                                            color: Appcolor
-                                                .grey, // Set the color to white
-                                            thickness:
-                                                1, // Set the thickness of the divider
-                                            height:
-                                                20, // Set the height spacing around the divider
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Progressindicatingitem(
-                                                label: 'Videos',
-                                                value: getprogressvalue(
-                                                    baritems[0].seenVideo ?? 0,
-                                                    baritems[0].video!)
-                                                // (baritems[0].seenVideo??0/ baritems[0].video!).toDouble(),
-                                                ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Progressindicatingitem(
-                                                label: 'Notes',
-                                                value: getprogressvalue(
-                                                    baritems[0].seenNotes ?? 0,
-                                                    baritems[0].notes!)
-                                                // (baritems[0].seenNotes??0/ baritems[0].notes!).toDouble(),
-                                                ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: Progressindicatingitem(
-                                              label: 'Audio',
-                                              value: getprogressvalue(
-                                                  baritems[0].seenAudio ?? 0,
-                                                  baritems[0].audio!),
-                                            ),
-                                          ),
-                                        ],
-                                      )),
+                                const SizedBox(height: 10),
+                                     Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 1, vertical: 1),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Appcolor.white,
+                                  borderRadius: BorderRadius.circular(15),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(0.08),
+                                      blurRadius: 15,
+                                      offset: const Offset(0, 5),
+                                    )
+                                  ],
                                 ),
-                                const SizedBox(
-                                  height: 30,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      buildtext(
+                                          text: 'Learning Progress',
+                                          fontcolor: Appcolor.black,
+                                          fontweight: FontWeight.w700,
+                                          fontsize: 16),
+                                      const SizedBox(height: 16),
+                                      CompactProgressIndicator(
+                                        label: 'Videos',
+                                        value: getprogressvalue(
+                                            baritems[0].seenVideo ?? 0,
+                                            baritems[0].video!),
+                                        seen: baritems[0].seenVideo ?? 0,
+                                        total: baritems[0].video!,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      CompactProgressIndicator(
+                                        label: 'Notes',
+                                        value: getprogressvalue(
+                                            baritems[0].seenNotes ?? 0,
+                                            baritems[0].notes!),
+                                        seen: baritems[0].seenNotes ?? 0,
+                                        total: baritems[0].notes!,
+                                      ),
+                                      const SizedBox(height: 12),
+                                      CompactProgressIndicator(
+                                        label: 'Audio',
+                                        value: getprogressvalue(
+                                            baritems[0].seenAudio ?? 0,
+                                            baritems[0].audio!),
+                                        seen: baritems[0].seenAudio ?? 0,
+                                        total: baritems[0].audio!,
+                                      ),
+                                      
+                                    ],
+                                  ),
                                 ),
+                              ),
+                            ),
+
+                            
                                 // const Assignmentlistindashboard()
+                                    Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 1, vertical: 10),
+                              child: CourseTimelineWidget(
+                                startDate: baritems[0].startDate.toString() ?? 'N/A' ,
+                                endDate: baritems[0].endDate.toString() ?? 'N/A' ,
+                                
+                              ),
+                            ),
+
+                            const SizedBox(height: 20),
+                              
                               ],
                             ),
                           ),
@@ -286,6 +277,8 @@ class _WelcomepageState extends State<Welcomepage> {
               ),
             ));
   }
+
+  
 
   void _dashboarddata() async {
     final result = await progressbardata();
@@ -357,11 +350,11 @@ class _AssignmentlistindashboardState extends State<Assignmentlistindashboard> {
           height: 50,
           color: Appcolor.blue,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         assignmentitem('Abhilash', assignments[1]),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -369,7 +362,7 @@ class _AssignmentlistindashboardState extends State<Assignmentlistindashboard> {
           height: 50,
           color: Appcolor.blue,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         Container(
@@ -377,7 +370,7 @@ class _AssignmentlistindashboardState extends State<Assignmentlistindashboard> {
           height: 50,
           color: Appcolor.blue,
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         // assignmentitem('Abhilash',assignments[1]),
@@ -397,6 +390,59 @@ class _AssignmentlistindashboardState extends State<Assignmentlistindashboard> {
     }
   }
 }
+class CompactProgressIndicator extends StatelessWidget {
+  final String label;
+  final double value;
+  final int seen;
+  final int total;
+
+  const CompactProgressIndicator({
+    super.key,
+    required this.label,
+    required this.value,
+    required this.seen,
+    required this.total,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final percentage = (value * 100).toStringAsFixed(0);
+
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            buildtext(
+              text: label,
+              fontcolor: Appcolor.black,
+              fontweight: FontWeight.w600,
+              fontsize: 13,
+            ),
+            buildtext(
+              text: '$seen/$total • $percentage%',
+              fontcolor: Appcolor.grey,
+              fontsize: 11,
+              fontweight: FontWeight.w500,
+            ),
+          ],
+        ),
+        const SizedBox(height: 6),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: LinearProgressIndicator(
+            value: value,
+            minHeight: 5,
+            backgroundColor: Colors.grey[300],
+            valueColor: const AlwaysStoppedAnimation<Color>(
+              Color(0xFF1E3A8A),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
 
 String capitalization(String name) {
   // String name = 'abhilash';
@@ -405,78 +451,6 @@ String capitalization(String name) {
   return capitalized; // Output: Abhilash
 }
 
-class Dashboardappbar extends StatelessWidget {
-  final String name;
-  const Dashboardappbar({
-    super.key,
-    required this.name,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Appcolor.darkblue,
-      child: Padding(
-        padding: EdgeInsets.all(devicewidth! * 0.05).copyWith(bottom: 0.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              child: Row(
-                children: [
-                  SizedBox(
-                    height: devicewidth! * 0.1,
-                    width: devicewidth! * 0.1,
-                    child: profileimage(
-                      image: menavathar,
-                      border: true,
-                      circle: false,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20,left: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        buildtext(
-                            text: 'Hello',
-                            fontsize: comonfontsize,
-                            fontcolor: Appcolor.white,
-                            fontweight: FontWeight.w200),
-                        buildtext(
-                            text: capitalization(name),
-                            fontsize: largefontsize,
-                            fontcolor: Appcolor.white,
-                            fontweight: FontWeight.w700)
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            // GestureDetector(
-            //   onTap: () => Navigator.pushNamed(context, '/appdrawer'),
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //         color: Appcolor.white,
-            //         borderRadius: BorderRadius.circular(5)),
-            //     child: const Padding(
-            //       padding: EdgeInsets.all(5),
-            //       child: Icon(
-            //         Icons.menu_rounded,
-            //         color: Appcolor.black,
-            //         size: 30,
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 class Progressindicatingitem extends StatelessWidget {
   final String label;
@@ -529,6 +503,205 @@ class Progressindicatingitem extends StatelessWidget {
     );
   }
 }
+
+class CourseTimelineWidget extends StatelessWidget {
+  final String startDate;
+  final String endDate;
+  // final int hoursCompleted;
+  // final int totalHours;
+
+  const CourseTimelineWidget({
+    super.key,
+    required this.startDate,
+    required this.endDate,
+    // required this.hoursCompleted,
+    // required this.totalHours,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+
+    DateTime parseBackendDate(String date) {
+  try {
+    // Expected backend format: dd/MM/yyyy
+    return DateFormat('dd/MM/yyyy').parse(date);
+  } catch (_) {
+    // fallback to today to prevent crashes
+    return DateTime.now();
+  }
+}
+
+    // Calculate days
+final start = parseBackendDate(startDate);
+final end   = parseBackendDate(endDate);
+    final today = DateTime.now();
+
+    final totalDays = end.difference(start).inDays;
+    final daysCompleted = today.difference(start).inDays;
+    final daysRemaining = end.difference(today).inDays;
+
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          )
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            buildtext(
+              text: 'Course Timeline',
+              fontcolor: Appcolor.black,
+              fontweight: FontWeight.w700,
+              fontsize: 16,
+            ),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _TimelineInfoItem(
+                    label: 'Start Date',
+                    value: _formatDate(startDate),
+                    icon: Icons.calendar_today,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _TimelineInfoItem(
+                    label: 'End Date',
+                    value: _formatDate(endDate),
+                    icon: Icons.event,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            // Row(
+            //   children: [
+            //     Expanded(
+            //       child: _TimelineInfoItem(
+            //         label: 'Hours Completed',
+            //         value: '$hoursCompleted hrs',
+            //         icon: Icons.access_time,
+            //       ),
+            //     ),
+            //     const SizedBox(width: 12),
+            //     Expanded(
+            //       child: _TimelineInfoItem(
+            //         label: 'Total Hours',
+            //         value: '$totalHours hrs',
+            //         icon: Icons.hourglass_full,
+            //       ),
+            //     ),
+            //   ],
+            // ),
+            // const SizedBox(height: 16),
+            Container(
+              decoration: BoxDecoration(
+                color: const Color(0xFF1E3A8A).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              padding: const EdgeInsets.all(12),
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.info_outline,
+                    color: Color(0xFF1E3A8A),
+                    size: 18,
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: buildtext(
+                      text: '$daysCompleted days over, $daysRemaining days remain',
+                      fontcolor: const Color(0xFF1E3A8A),
+                      fontsize: 12,
+                      fontweight: FontWeight.w600,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+String _formatDate(String dateString) {
+      DateTime parseBackendDate(String date) {
+  try {
+    // Expected backend format: dd/MM/yyyy
+    return DateFormat('dd/MM/yyyy').parse(date);
+  } catch (_) {
+    // fallback to today to prevent crashes
+    return DateTime.now();
+  }
+}
+  final date = parseBackendDate(dateString);
+  return DateFormat('dd MMM yyyy').format(date);
+}
+
+}
+
+class _TimelineInfoItem extends StatelessWidget {
+  final String label;
+  final String value;
+  final IconData icon;
+
+  const _TimelineInfoItem({
+    required this.label,
+    required this.value,
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Appcolor.darkblue.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Icon(
+                icon,
+                size: 14,
+                color: Appcolor.grey,
+              ),
+              const SizedBox(width: 6),
+              buildtext(
+                text: label,
+                fontcolor: Appcolor.grey,
+                fontsize: 10,
+                fontweight: FontWeight.w500,
+              ),
+            ],
+          ),
+          const SizedBox(height: 4),
+          buildtext(
+            text: value,
+            fontcolor: Appcolor.black,
+            fontsize: 13,
+            fontweight: FontWeight.w700,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 class dashboarditem extends StatelessWidget {
   final String icon;
@@ -586,6 +759,109 @@ class dashboarditem extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class ClassInfoCard extends StatelessWidget {
+  final String className;
+  final String department;
+  final String section;
+
+  const ClassInfoCard({
+    super.key,
+    required this.className,
+    required this.department,
+    required this.section,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.08),
+            blurRadius: 15,
+            offset: const Offset(0, 5),
+          )
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+    
+            
+            buildtext(
+              text: capitalization(className),
+              fontcolor: Appcolor.black,
+              fontsize: 20,
+              fontweight: FontWeight.w700,
+            ),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Expanded(
+                  child: _InfoChip(
+                    label: 'Department',
+                    value: department,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _InfoChip(
+                    label: 'Section',
+                    value: section,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _InfoChip extends StatelessWidget {
+  final String label;
+  final String value;
+
+  const _InfoChip({
+    required this.label,
+    required this.value,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Appcolor.darkblue.withOpacity(0.1),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildtext(
+            text: label,
+            fontcolor: Appcolor.grey,
+            fontsize: 10,
+            fontweight: FontWeight.w500,
+          ),
+          const SizedBox(height: 4),
+          buildtext(
+            text: value,
+            fontcolor: Appcolor.black,
+            fontsize: 12,
+            fontweight: FontWeight.w600,
+          ),
+        ],
+      ),
     );
   }
 }

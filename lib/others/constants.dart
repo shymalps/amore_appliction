@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-/////////////////////Asset images
 String logo = 'asset/images/applogo.png';
 String invertlogo = 'asset/images/applogo.png';
 String menavathar = 'asset/images/3davatharmen.png';
@@ -27,6 +26,7 @@ String audioplay = 'asset/images/audio default icon.png';
 String nottificationanimation = 'asset/images/nottification.gif';
 String invoice = 'asset/images/invoice.png';
 String attendanceicon = 'asset/images/attendence.png';
+String liveC = 'asset/images/live.png';
 ///////////////////////////////////////comon sizes
 double? deviceheight;
 double? devicewidth;

@@ -22,6 +22,14 @@ class Baritem {
   @JsonKey(name: 'last_seen')
   String? lastSeen;
 
+  // NEW FIELDS
+  String? department;
+  String? section;
+  @JsonKey(name: 'startdate')
+  String? startDate;
+  @JsonKey(name: 'enddate')
+  String? endDate;
+
   Baritem({
     this.datumClass,
     this.no,
@@ -34,10 +42,14 @@ class Baritem {
     this.audio,
     this.timeTakens,
     this.lastSeen,
+    this.department,
+    this.section,
+    this.startDate,
+    this.endDate,
   });
 
-  factory Baritem.fromJson(Map<String, dynamic> json) =>
-      _$BaritemFromJson(json);
+  factory Baritem.fromJson(Map<String, dynamic> json)
+      => _$BaritemFromJson(json);
 
   Map<String, dynamic> toJson() => _$BaritemToJson(this);
 }
