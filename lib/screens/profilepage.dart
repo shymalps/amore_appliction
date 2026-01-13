@@ -53,15 +53,15 @@ class _profile_pageState extends State<profile_page> {
                                   text: 'Hello ${userdata!.data!.name!}',
                                   fontsize: largefontsize,
                                   fontweight: FontWeight.bold),
-                              GestureDetector(
-                                  onTap: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Profiledit())),
-                                  child: buildTextIcon(
-                                      icon: Icons.edit,
-                                      text: 'Edit',
-                                      iconSize: 20))
+                              // GestureDetector(
+                              //     onTap: () => Navigator.push(
+                              //         context,
+                              //         MaterialPageRoute(
+                              //             builder: (context) => Profiledit())),
+                              //     child: buildTextIcon(
+                              //         icon: Icons.edit,
+                              //         text: 'Edit',
+                              //         iconSize: 20))
                             ]),
                         buildtext(
                           text: 'What do you want to learn today',
